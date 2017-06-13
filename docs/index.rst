@@ -9,3 +9,20 @@ and in case of testing on host (Linux on Linux, OSX on OSX, etc.) just
 forwards ``NAME`` and ``COMMAND`` arguments. Main functionality of the framework
 is uploading/starting binaries for iOS/Android testing.  CMake style generator
 expression ``$<GAUZE_RESOURCE_FILE:...>`` can be used for managing resources.
+
+.. toctree::
+  :maxdepth: 1
+  :caption: Prerequirements
+
+  /prereq/ios
+  /prereq/android
+
+.. toctree::
+  :maxdepth: 1
+  :caption: Examples
+
+  /examples/simple
+  /examples/args
+  /examples/resource
+  /examples/deps
+  /examples/gtest
