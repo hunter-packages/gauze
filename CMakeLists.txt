@@ -53,6 +53,25 @@ install(
     DESTINATION "${config_install_dir}"
 )
 
+install(
+    FILES
+    cmake/gauze_check_emulator_running.cmake
+    cmake/gauze_get_all_dependencies.cmake
+    cmake/gauze_start_android_emulator.cmake
+    cmake/gauze_add_test.cmake
+    cmake/gauze_create_avd.cmake
+    cmake/gauze_run_start_script.cmake
+    DESTINATION cmake/${PROJECT_NAME}
+)
+
+install(
+    FILES
+    cmake/templates/AndroidTest.cmake.in
+    cmake/templates/iOSTest.cmake.in
+    cmake/templates/start-emulator.sh.in
+    DESTINATION cmake/${PROJECT_NAME}/templates
+)
+
 add_subdirectory(lib/gauze)
 
 if(GAUZE_BUILD_TESTS)
