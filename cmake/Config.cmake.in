@@ -18,3 +18,5 @@ if(NOT "${_gauze_module_path}" IN_LIST CMAKE_MODULE_PATH)
 endif()
 
 include(gauze_add_test)
+
+find_package(Boost CONFIG REQUIRED)
