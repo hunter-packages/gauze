@@ -8,6 +8,8 @@ HunterGate(
 
 project(gauze VERSION 0.1)
 
+option(GAUZE_BUILD_TESTS "Build tests" ON)
+
 ####
 # Installation (https://github.com/forexample/package-example)
 
@@ -46,3 +48,8 @@ install(
 )
 
 add_subdirectory(lib/gauze)
+
+if(GAUZE_BUILD_TESTS)
+  enable_testing()
+  add_subdirectory(test/gauze)
+endif()
