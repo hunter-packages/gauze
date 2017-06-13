@@ -1,6 +1,7 @@
 #include <cstdlib> // EXIT_SUCCESS
 #include <fstream> // std::ifstream
 #include <iostream> // std::cout
+#include <string> // std::getline
 
 int gauze_main(int argc, char** argv) {
   std::cout << "argc = " << argc << std::endl;
