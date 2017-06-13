@@ -10,6 +10,9 @@ project(gauze VERSION 0.1)
 
 option(GAUZE_BUILD_TESTS "Build tests" ON)
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+include(gauze_add_test)
+
 ####
 # Installation (https://github.com/forexample/package-example)
 
