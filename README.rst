@@ -21,6 +21,20 @@ Unified CTest-friendly testing framework for Windows, Linux, OSX, iOS, Android.
   :target: https://ci.appveyor.com/project/ruslo/gauze/history
   :alt: AppVeyor
 
+.. code-block:: cmake
+
+  gauze_add_test(
+      NAME
+      foo
+      COMMAND
+      foo
+      --param1 1
+      --param2 2
+      --resource $<GAUZE_RESOURCE_FILE:${CMAKE_CURRENT_LIST_DIR}/data/input.txt>
+      --just-string ${CMAKE_CURRENT_LIST_DIR}/data/just-string.txt
+ )
+      
+
 * Sources: `<https://github.com/hunter-packages/gauze>`_
 * Documentation: `<https://gauze.readthedocs.io>`_
 * Reporting broken links, issues, general discussion: `<https://github.com/hunter-packages/gauze/issues/new>`_
