@@ -76,7 +76,7 @@ install:
   - cmd: set MSYS_PATH=C:\msys64\usr\bin
 
 build_script:
-  - cmd: python %POLLY_SOURCE_DIR%\bin\polly.py --toolchain "%TOOLCHAIN%" --config "%CONFIG%" --verbose --test --install --fwd HUNTER_USE_CACHE_SERVERS=ONLY HUNTER_DISABLE_BUILDS=YES
+  - cmd: python %POLLY_ROOT%\bin\polly.py --toolchain "%TOOLCHAIN%" --config "%CONFIG%" --verbose --test --install --fwd HUNTER_USE_CACHE_SERVERS=ONLY HUNTER_DISABLE_BUILDS=YES
 
 # http://www.appveyor.com/docs/branches#white-and-blacklisting
 # Exclude branch 'pkg.template'. Nothing to build there.
