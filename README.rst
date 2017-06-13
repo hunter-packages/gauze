@@ -1,7 +1,7 @@
 Gauze
 -----
 
-Unified CTest-friendly framework for Windows, Linux, OSX, iOS, Android.
+Unified CTest-friendly testing framework for Windows, Linux, OSX, iOS, Android.
 
 |build_travis| |build_appveyor| |build_docs| |license|
 
