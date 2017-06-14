@@ -37,5 +37,6 @@ Unified CTest-friendly testing framework for Windows, Linux, OSX, iOS, Android.
 
 * Sources: `<https://github.com/hunter-packages/gauze>`_
 * Documentation: `<https://gauze.readthedocs.io>`_
+* Hunter package: https://github.com/ruslo/hunter/wiki/pkg.gauze
 * Reporting broken links, issues, general discussion: `<https://github.com/hunter-packages/gauze/issues/new>`_
 * Contacts: Ruslan Baratov <ruslan_baratov@yahoo.com> David Hirvonen <dhirvonen@elucideye.com>
