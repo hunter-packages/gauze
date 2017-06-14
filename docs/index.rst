@@ -10,6 +10,10 @@ forwards ``NAME`` and ``COMMAND`` arguments. Main functionality of the framework
 is uploading/starting binaries for iOS/Android testing.  CMake style generator
 expression ``$<GAUZE_RESOURCE_FILE:...>`` can be used for managing resources.
 
+.. admonition:: Hunter
+
+  * `pkg.gauze <https://github.com/ruslo/hunter/wiki/pkg.gauze>`__
+
 .. toctree::
   :maxdepth: 1
   :caption: Prerequirements
