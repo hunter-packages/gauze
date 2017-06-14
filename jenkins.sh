@@ -10,7 +10,8 @@ polly.py \
   --ios-multiarch --ios-combined \
   --fwd \
   HUNTER_USE_CACHE_SERVERS=ONLY \
-  HUNTER_DISABLE_BUILDS=YES \
+  HUNTER_DISABLE_BUILDS=ON \
   HUNTER_SUPPRESS_LIST_OF_FILES=ON \
+  GAUZE_ANDROID_USE_EMULATOR=ON \
   --test \
   --install

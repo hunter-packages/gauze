@@ -75,6 +75,10 @@ install(
 add_subdirectory(lib/gauze)
 
 if(GAUZE_BUILD_TESTS)
-  enable_testing()
+  if("$ENV{TRAVIS}" STREQUAL "true" AND IOS)
+    # Do not run tests (just build)
+  else()
+    enable_testing()
+  endif()
   add_subdirectory(test/gauze)
 endif()
