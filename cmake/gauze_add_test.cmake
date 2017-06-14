@@ -149,6 +149,9 @@ function(gauze_add_test)
 
     set(BUNDLE_ID "${GAUZE_IOS_BUNDLE_IDENTIFIER}.${toolchain_suffix}.${APP_TARGET}")
 
+    # '_' is an illegal character
+    string(REPLACE "_" "-" BUNDLE_ID "${BUNDLE_ID}")
+
     set_target_properties(
         "${APP_TARGET}"
         PROPERTIES
