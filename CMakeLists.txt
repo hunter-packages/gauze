@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.3) # IN_LIST
 
 include("cmake/HunterGate.cmake")
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.19.9.tar.gz"
-    SHA1 "592ffb37a7143d123e04479fe9d7752e81eb59dc"
+    URL "https://github.com/ruslo/hunter/archive/v0.19.10.tar.gz"
+    SHA1 "73b5a5253b75d5ed79c89242c167ca1f94386621"
 )
 
 project(gauze VERSION 0.1)

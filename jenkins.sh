@@ -11,5 +11,6 @@ polly.py \
   --fwd \
   HUNTER_USE_CACHE_SERVERS=ONLY \
   HUNTER_DISABLE_BUILDS=YES \
+  HUNTER_SUPPRESS_LIST_OF_FILES=ON \
   --test \
   --install
