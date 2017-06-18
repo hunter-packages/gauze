@@ -27,10 +27,13 @@ matrix:
       env: CONFIG=Debug TOOLCHAIN=gcc
     - os: linux
       env: CONFIG=Release TOOLCHAIN=gcc
-    - os: linux
-      env: CONFIG=Debug TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon
-    - os: linux
-      env: CONFIG=Release TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon
+
+    # FIXME
+    # - os: linux
+    #   env: CONFIG=Debug TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon
+    # - os: linux
+    #   env: CONFIG=Release TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon
+
     - os: linux
       env: CONFIG=Release TOOLCHAIN=generate-documentation-test
 

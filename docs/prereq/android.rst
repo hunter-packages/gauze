@@ -58,3 +58,8 @@ Emulator can be stopped by ``kill -9`` command:
   > ps aux | grep gauze_android
   <username> 9160 ... /.../android-sdk/tools/emulator64-arm -avd gauze_android-19_armeabi-v7a -no-window -port 5678 -gpu host
   > kill -9 9160
+
+.. warning::
+
+  Android emulator is not working on Travis CI Linux machines. OSX machines
+  can be used instead.
