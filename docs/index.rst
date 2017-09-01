@@ -12,7 +12,7 @@ expression ``$<GAUZE_RESOURCE_FILE:...>`` can be used for managing resources.
 
 .. admonition:: Hunter
 
-  * `pkg.gauze <https://github.com/ruslo/hunter/wiki/pkg.gauze>`__
+  * `gauze <https://docs.hunter.sh/en/latest/packages/pkg/gauze.html>`__
 
 .. toctree::
   :maxdepth: 1
