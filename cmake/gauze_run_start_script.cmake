@@ -33,7 +33,9 @@ function(gauze_run_start_script)
     message(FATAL_ERROR "File not found: '${bash_path}'")
   endif()
 
-  message("Starting emulator")
+  string(TIMESTAMP timestamp)
+  message("[${timestamp}] Starting emulator")
+
   set(cmd "${bash_path}" ${start_script})
   execute_process(
       COMMAND ${cmd}
@@ -49,7 +51,9 @@ function(gauze_run_start_script)
     message(FATAL_ERROR "Command failed: ${cmd} (${result}, ${output}, ${error})")
   endif()
 
-  message("Waiting for emulator")
+  string(TIMESTAMP timestamp)
+  message("[${timestamp}] Waiting for emulator")
+
   foreach(x RANGE 15) # wait for 15 minutes
     set(cmd "${GAUZE_ANDROID_ADB}" -e wait-for-device)
     execute_process(
@@ -64,7 +68,8 @@ function(gauze_run_start_script)
     )
 
     if(result EQUAL 0)
-      message("Emulator is ready!")
+      string(TIMESTAMP timestamp)
+      message("[${timestamp}] Emulator is ready!")
       return()
     endif()
 
