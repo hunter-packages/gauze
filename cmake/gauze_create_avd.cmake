@@ -29,7 +29,8 @@ function(gauze_create_avd)
     return()
   endif()
 
-  message("Creating AVD with name '${GAUZE_DEVICE_NAME}'")
+  string(TIMESTAMP timestamp)
+  message("[${timestamp}] Creating AVD with name '${GAUZE_DEVICE_NAME}'")
   set(
       cmd
       ${android_tool}
@@ -49,7 +50,10 @@ function(gauze_create_avd)
       ERROR_STRIP_TRAILING_WHITESPACE
   )
 
-  if(NOT result EQUAL 0)
+  if(result EQUAL 0)
+    string(TIMESTAMP timestamp)
+    message("[${timestamp}] Done")
+  else()
     message(FATAL_ERROR "Command failed: ${cmd} (${result}, ${output}, ${error})")
   endif()
 endfunction()
