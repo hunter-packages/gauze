@@ -74,33 +74,96 @@ set(app_arguments "@APP_ARGUMENTS@")
 set(arguments)
 foreach(arg ${app_arguments})
   string(
-      REGEX REPLACE "^\\$<GAUZE_RESOURCE_FILE:\(.*\)>$" "\\1" resource "${arg}"
+      REGEX
+      REPLACE
+      "^\\$<GAUZE_RESOURCE_FILE:\(.*\)>$"
+      "\\1"
+      resource_file
+      "${arg}"
   )
-  if("${resource}" STREQUAL "${arg}")
-    # nothing replaced => not a resource
-    set(arguments "${arguments} \"${arg}\"")
+
+  string(
+      REGEX
+      REPLACE
+      "^\\$<GAUZE_RESOURCE_DIR:\(.*\)>$"
+      "\\1"
+      resource_dir
+      "${arg}"
+  )
+
+  set(is_resource_file FALSE)
+  set(is_resource_dir FALSE)
+
+  if("${resource_file}" STREQUAL "${arg}")
+    # nothing replaced => not a resource file
+    if("${resource_dir}" STREQUAL "${arg}")
+      # nothing replaced => not a directory with resources
+    else()
+      # '$<GAUZE_RESOURCE_DIR:...>' detected => directory with resources
+      set(is_resource_dir TRUE)
+    endif()
   else()
     # '$<GAUZE_RESOURCE_FILE:...>' detected => resource file
-    message("Resource detected: '${resource}'")
-    if(NOT IS_ABSOLUTE "${resource}")
-      set(resource "@RESOURCE_DIR@/${resource}")
+    set(is_resource_file TRUE)
+  endif()
+
+  if(is_resource_file)
+    message("Resource detected: '${resource_file}'")
+    if(NOT IS_ABSOLUTE "${resource_file}")
+      set(resource_file "@RESOURCE_DIR@/${resource_file}")
     endif()
-    if(NOT EXISTS "${resource}")
-      message(FATAL_ERROR "File not found: ${resource}")
+    if(NOT EXISTS "${resource_file}")
+      message(FATAL_ERROR "File not found: ${resource_file}")
     endif()
-    get_filename_component(res_name "${resource}" NAME)
+    if(IS_DIRECTORY "${resource_file}")
+      message(FATAL_ERROR "Not a file but directory: ${resource_file}")
+    endif()
+    get_filename_component(res_name "${resource_file}" NAME)
     set(res_path "${data_dir}/${res_name}")
     set(arguments "${arguments} \"${res_path}\"")
 
     message("Push resource to Android device:")
-    message("  '${resource}'")
+    message("  '${resource_file}'")
     message("  -> '${res_path}'")
 
-    set(cmd ${adb_command} push "${resource}" "${res_path}")
+    set(cmd ${adb_command} push "${resource_file}" "${res_path}")
     execute_process(COMMAND ${cmd} RESULT_VARIABLE result)
     if(NOT result EQUAL 0)
       message(FATAL_ERROR "Command failed: ${cmd}")
     endif()
+  elseif(is_resource_dir)
+    message("Directory with resources detected: '${resource_dir}'")
+    if(NOT IS_ABSOLUTE "${resource_dir}")
+      set(resource_dir "@RESOURCE_DIR@/${resource_dir}")
+    endif()
+    if(NOT EXISTS "${resource_dir}")
+      message(FATAL_ERROR "Directory not found: ${resource_dir}")
+    endif()
+    if(NOT IS_DIRECTORY "${resource_dir}")
+      message(FATAL_ERROR "Not a directory: ${resource_dir}")
+    endif()
+    get_filename_component(res_name "${resource_dir}" NAME)
+    set(res_path "${data_dir}/${res_name}")
+    set(arguments "${arguments} \"${res_path}\"")
+
+    message("Remove destination directory: '${res_path}'")
+    set(cmd ${adb_command} shell rm -rf \"${res_path}\")
+    execute_process(COMMAND ${cmd} RESULT_VARIABLE result)
+    if(NOT result EQUAL 0)
+      message(FATAL_ERROR "Command failed: ${cmd}")
+    endif()
+
+    message("Push directory to Android device:")
+    message("  '${resource_dir}'")
+    message("  -> '${res_path}'")
+
+    set(cmd ${adb_command} push "${resource_dir}" "${res_path}")
+    execute_process(COMMAND ${cmd} RESULT_VARIABLE result)
+    if(NOT result EQUAL 0)
+      message(FATAL_ERROR "Command failed: ${cmd}")
+    endif()
+  else()
+    set(arguments "${arguments} \"${arg}\"")
   endif()
 endforeach()
 
@@ -132,9 +195,10 @@ endif()
 message("Set LD_LIBRARY_PATH to '${libs_dir}'")
 message("Run command on Android device:")
 message("[@TESTING_DIR@]> \"${exe_path}\" ${arguments}")
+# Note: Add '2>&1' redirection because otherwise 'cerr' will mess up with 'echo $?'
 execute_process(
     COMMAND
-    ${adb_command} shell "cd \"@TESTING_DIR@\"; export LD_LIBRARY_PATH=\"${libs_dir}\"; \"${exe_path}\" ${arguments}; echo $?"
+    ${adb_command} shell "cd \"@TESTING_DIR@\"; export LD_LIBRARY_PATH=\"${libs_dir}\"; \"${exe_path}\" ${arguments} 2>&1; echo $?"
     RESULT_VARIABLE result
     OUTPUT_VARIABLE output
     ERROR_VARIABLE output
