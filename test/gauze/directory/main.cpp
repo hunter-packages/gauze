@@ -26,7 +26,7 @@ int gauze_main(int argc, char** argv) {
     file_path /= file_name.str();
 
     std::cout << "Processing file: " << file_path << std::endl;
-    std::ifstream file(file_path.c_str());
+    std::ifstream file(file_path.string());
 
     std::string content;
     std::getline(file, content);
