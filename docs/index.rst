@@ -29,5 +29,6 @@ can be used for managing resources.
   /examples/simple
   /examples/args
   /examples/resource
+  /examples/directory
   /examples/deps
   /examples/gtest
