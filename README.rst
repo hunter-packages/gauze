@@ -3,7 +3,7 @@ Gauze
 
 Unified CTest-friendly testing framework for Windows, Linux, OSX, iOS, Android.
 
-|build_travis| |build_appveyor| |build_docs| |license|
+|build_travis| |build_appveyor| |build_docs| |hunter| |license|
 
 .. |build_docs| image:: https://readthedocs.org/projects/gauze/badge/?version=latest
   :target: https://gauze.readthedocs.io/en/latest/?badge=latest
@@ -20,6 +20,10 @@ Unified CTest-friendly testing framework for Windows, Linux, OSX, iOS, Android.
 .. |build_appveyor| image:: https://ci.appveyor.com/api/projects/status/1fw2kvxx5wa90gci/branch/master?svg=true
   :target: https://ci.appveyor.com/project/ruslo/gauze/history
   :alt: AppVeyor
+
+.. |hunter| image:: https://img.shields.io/badge/hunter-gauze-blue.svg
+  :target: https://docs.hunter.sh/en/latest/packages/pkg/gauze.html
+  :alt: Hunter
 
 .. code-block:: cmake
 
