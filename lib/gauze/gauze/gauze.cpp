@@ -36,6 +36,9 @@ int main(int argc, char** argv)
         }
 
         std::vector<char*> new_argv(argc);
+
+        // NOTE: GAUZE_RESOURCE_DIR converted to GAUZE_RESOURCE_FILE
+        // to simplify logic (see iOSTest.cmake.in)
         const std::regex r("\\$<GAUZE_RESOURCE_FILE:(.*)>$");
 
         std::string fmt(home);

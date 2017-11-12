@@ -32,11 +32,6 @@ environment:
     - TOOLCHAIN: "vs-14-2015"
       CONFIG: "Debug"
 
-    - TOOLCHAIN: "vs-9-2008"
-      CONFIG: "Release"
-    - TOOLCHAIN: "vs-9-2008"
-      CONFIG: "Debug"
-
     - TOOLCHAIN: "mingw"
       CONFIG: "Release"
     - TOOLCHAIN: "mingw"

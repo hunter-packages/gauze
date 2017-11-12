@@ -8,7 +8,8 @@ wraps standard
 and in case of testing on host (Linux on Linux, OSX on OSX, etc.) just
 forwards ``NAME`` and ``COMMAND`` arguments. Main functionality of the framework
 is uploading/starting binaries for iOS/Android testing.  CMake style generator
-expression ``$<GAUZE_RESOURCE_FILE:...>`` can be used for managing resources.
+expressions ``$<GAUZE_RESOURCE_FILE:...>`` and ``$<GAUZE_RESOURCE_DIR:...>``
+can be used for managing resources.
 
 .. admonition:: Hunter
 
@@ -28,5 +29,6 @@ expression ``$<GAUZE_RESOURCE_FILE:...>`` can be used for managing resources.
   /examples/simple
   /examples/args
   /examples/resource
+  /examples/directory
   /examples/deps
   /examples/gtest

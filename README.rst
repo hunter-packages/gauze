@@ -35,6 +35,7 @@ Unified CTest-friendly testing framework for Windows, Linux, OSX, iOS, Android.
       --param1 1
       --param2 2
       --resource $<GAUZE_RESOURCE_FILE:${CMAKE_CURRENT_LIST_DIR}/data/input.txt>
+      --directory-with-resources $<GAUZE_RESOURCE_DIR:${CMAKE_CURRENT_LIST_DIR}/data/myres/>
       --just-string ${CMAKE_CURRENT_LIST_DIR}/data/just-string.txt
  )
 
