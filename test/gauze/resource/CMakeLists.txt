@@ -11,4 +11,5 @@ gauze_add_test(
     arg3
     $<GAUZE_RESOURCE_FILE:${data_dir}/input.txt>
     ${data_dir}/just_a_string.txt
+    --input=$<GAUZE_RESOURCE_FILE:${data_dir}/input.txt>
 )
