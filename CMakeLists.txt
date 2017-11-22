@@ -6,7 +6,7 @@ HunterGate(
     SHA1 "73b5a5253b75d5ed79c89242c167ca1f94386621"
 )
 
-project(gauze VERSION 0.1)
+project(gauze VERSION 0.2.1)
 
 option(GAUZE_BUILD_TESTS "Build tests" ON)
 

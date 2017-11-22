@@ -15,4 +15,5 @@ gauze_add_test(
     arg3
     $<GAUZE_RESOURCE_DIR:${data_dir}>
     ${data_dir}/just_a_string.txt
+    --directory=$<GAUZE_RESOURCE_DIR:${data_dir}>
 )

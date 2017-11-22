@@ -11,7 +11,7 @@ int gauze_main(int argc, char** argv) {
     std::cout << "argv[" << i << "] = " << argv[i] << std::endl;
   }
 
-  if(argc < 6) {
+  if(argc < 7) {
     std::cerr << "Unexpected number of arguments: " << argc << std::endl;
     return EXIT_FAILURE;
   }

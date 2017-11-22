@@ -95,8 +95,8 @@ foreach(arg ${app_arguments})
   string(
       REGEX
       REPLACE
-      "^\\$<GAUZE_RESOURCE_FILE:\(.*\)>$"
-      "\\1"
+      "^\(.*\)\\$<GAUZE_RESOURCE_FILE:\(.*\)>$"
+      "\\2"
       resource_file
       "${arg}"
   )
@@ -104,8 +104,8 @@ foreach(arg ${app_arguments})
   string(
       REGEX
       REPLACE
-      "^\\$<GAUZE_RESOURCE_DIR:\(.*\)>$"
-      "\\1"
+      "^\(.*\)\\$<GAUZE_RESOURCE_DIR:\(.*\)>$"
+      "\\2"
       resource_dir
       "${arg}"
   )
