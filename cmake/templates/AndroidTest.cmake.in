@@ -142,7 +142,15 @@ foreach(arg ${app_arguments})
     if(NOT IS_DIRECTORY "${resource_dir}")
       message(FATAL_ERROR "Not a directory: ${resource_dir}")
     endif()
+
+    # Remove trailing '/' so we can get last component correctly
+    get_filename_component(resource_dir "${resource_dir}" ABSOLUTE)
+
     get_filename_component(res_name "${resource_dir}" NAME)
+    if("${res_name}" STREQUAL "")
+      message(FATAL_ERROR "Can't get directory name")
+    endif()
+
     set(res_path "${data_dir}/${res_name}")
     set(arguments "${arguments} \"${res_path}\"")
 
