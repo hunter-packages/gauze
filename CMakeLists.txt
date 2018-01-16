@@ -9,6 +9,7 @@ HunterGate(
 project(gauze VERSION 0.2.1)
 
 option(GAUZE_BUILD_TESTS "Build tests" ON)
+set(GAUZE_ANDROID_EMULATOR_GPU "host" CACHE STRING "GPU type for Android emulator")
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 include(gauze_add_test)

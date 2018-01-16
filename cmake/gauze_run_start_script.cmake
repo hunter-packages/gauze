@@ -18,6 +18,11 @@ function(gauze_run_start_script)
   set(GAUZE_START_LOG "${CMAKE_CURRENT_BINARY_DIR}/_3rdParty/gauze/start-log.txt")
   set(GAUZE_START_ERR "${CMAKE_CURRENT_BINARY_DIR}/_3rdParty/gauze/start-err.txt")
 
+  if("${GAUZE_ANDROID_EMULATOR_GPU}" STREQUAL "")
+    # https://developer.android.com/studio/run/emulator-acceleration.html#command-gpu
+    set(GAUZE_ANDROID_EMULATOR_GPU "host")
+  endif()
+
   # Use:
   # * GAUZE_ANDROID_ADB
   # * GAUZE_ANDROID_EMULATOR
@@ -26,6 +31,7 @@ function(gauze_run_start_script)
   # * GAUZE_START_ERR
   # * GAUZE_START_LOG
   # * ANDROID-SDK_ROOT
+  # * GAUZE_ANDROID_EMULATOR_GPU
   configure_file(${GAUZE_START_EMULATOR_SCRIPT} "${start_script}" @ONLY)
 
   set(bash_path "/bin/bash")
