@@ -4,6 +4,10 @@ find_package(Boost REQUIRED COMPONENTS filesystem system)
 add_executable(gauze_directory main.cpp)
 target_link_libraries(gauze_directory PRIVATE Boost::filesystem Boost::system)
 
+set_target_properties(
+    gauze_directory PROPERTIES BUILD_RPATH "${BOOST_ROOT}/lib"
+)
+
 set(data_dir "${CMAKE_CURRENT_LIST_DIR}/resdir")
 
 gauze_add_test(
