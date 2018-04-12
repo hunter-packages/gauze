@@ -1,3 +1,4 @@
+# Polly
 _logs/
 _builds/
 _install/
@@ -5,3 +6,6 @@ _install/
 docs/_build/
 docs/_spelling/
 docs/_venv/
+
+# Emacs
+*~
