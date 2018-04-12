@@ -1,8 +1,11 @@
 hunter_add_package(Boost)
 find_package(Boost CONFIG REQUIRED)
 
-add_library(gauze gauze.cpp)
+# On OSX and Windows you can't have shared library with undefined symbol
+add_library(gauze STATIC gauze.cpp)
 target_link_libraries(gauze PUBLIC Boost::boost)
+
+set_target_properties(gauze PROPERTIES POSITION_INDEPENDENT_CODE TRUE)
 
 install(
     TARGETS gauze
