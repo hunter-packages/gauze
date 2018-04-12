@@ -27,6 +27,10 @@ addons:
 dist:
   - trusty
 
+env:
+  global:
+    - secure: "eE1Hw92pwQupLqaCAlHt0Qxniv/e9AZSwPDGndD0dyHdPi7XCCqTULvlfie06ZiCXiSuWR+qXUj0mASpHFbz29cThNu5cMDC5YAgZ9xAgEXbZ1AHdyEIHF7ygUDgKk9+lm/7ju2XudESplbK1PuQGnNJAoI7SSNSeTqXa1LzHIlNKFjxFptjskhhi/UMR4UlM3mnTmILgUCLDD5rFVI5GGQqaAAAhWxbuLW1tX6v7iwZxuq/20r9nU9iN7notrclgmqmxKeHydBFgKrmQo+4yZsdpJQK7mGHG3Cvzegj9XjKfvQYAYHPXzwxuPGZT+JK/hZIS7PUH/ROqvsYVMpCim5ViLkRh6wz8tcUHSAh1yMvU5uo6HlT+rZExn5JXYEM69V1PenVxScCFHAjIukh0x7burnUOjbH3IhGjdeD2ppi7JqW8U6LR5S83c5DAD89xrHgIsKqOPvKl243i7vZ0B+LRHypBQbmbmcLG0J7sZ9NJrAeoGHut1E6Syx3br+3ysQm2pKcEIFaoMBBMZ3ZaYvaMrXFdI0JRpDffdkZtsoNTVGMBbj8W43qZs8cqFlyEQ0gAbRI/MbE2LB3fV7b7DBdt4GB5u9TL789XgvGurpsZ6wo5Moldd8ctVr4ZG8g19h6OFQZ6t1II+nyX5fqx0Yk4VR01dUsx/kFnwKvwMs="
+
 matrix:
   include:
     # Linux {

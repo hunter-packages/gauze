@@ -1,6 +1,10 @@
 # Windows (https://github.com/travis-ci-tester/toolchain-table)
 
 environment:
+  global:
+    GITHUB_USER_PASSWORD:
+      secure: 6H7CIRtXeTbl+sAlcuTRAW3tun6JmQmj70kqV/VK178/NSc2cdkfXioxVqP47vht
+
   matrix:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
       TOOLCHAIN: "vs-15-2017-win64-cxx17"
