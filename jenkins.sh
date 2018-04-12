@@ -10,9 +10,7 @@ polly.py \
   --ios-multiarch --ios-combined \
   --fwd \
   HUNTER_SUPPRESS_LIST_OF_FILES=ON \
-  GAUZE_ANDROID_USE_EMULATOR=ON \
-  GAUZE_ANDROID_EMULATOR_GPU=${GPU} \
   BUILD_SHARED_LIBS=${SHARED} \
   HUNTER_BUILD_SHARED_LIBS=${SHARED} \
-  --test \
+  ${TEST} \
   --install
