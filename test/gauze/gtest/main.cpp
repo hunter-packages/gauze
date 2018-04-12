@@ -8,6 +8,10 @@ int argc_;
 char** argv_;
 
 int gauze_main(int argc, char** argv) {
+  std::cout << "argc = " << argc << std::endl;
+  for (int i=0; i<argc; ++i) {
+      std::cout << "argv[" << i << "] = " << argv[i] << std::endl;
+  }
   argc_ = argc;
   argv_ = argv;
   ::testing::InitGoogleTest(&argc, argv);
