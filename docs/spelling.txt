@@ -3,3 +3,4 @@ GTest
 OSX
 executables
 iOS
+macOS
