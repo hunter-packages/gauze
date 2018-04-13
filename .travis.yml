@@ -48,6 +48,9 @@ matrix:
       env: CONFIG=Release TOOLCHAIN=android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14 SHARED=OFF TEST="" BUILD_TEST=OFF
 
     - os: linux
+      env: CONFIG=Debug TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon SHARED=OFF TEST="--test" BUILD_TEST=ON
+
+    - os: linux
       env: CONFIG=Release TOOLCHAIN=generate-documentation-test
 
     # }
