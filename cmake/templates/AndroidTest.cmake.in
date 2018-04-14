@@ -76,8 +76,8 @@ foreach(arg ${app_arguments})
   string(
       REGEX
       REPLACE
-      "^\\$<GAUZE_RESOURCE_FILE:\(.*\)>$"
-      "\\1"
+      "^\(.*\)\\$<GAUZE_RESOURCE_FILE:\(.*\)>$"
+      "\\2"
       resource_file
       "${arg}"
   )
@@ -85,8 +85,8 @@ foreach(arg ${app_arguments})
   string(
       REGEX
       REPLACE
-      "^\\$<GAUZE_RESOURCE_DIR:\(.*\)>$"
-      "\\1"
+      "^\(.*\)\\$<GAUZE_RESOURCE_DIR:\(.*\)>$"
+      "\\2"
       resource_dir
       "${arg}"
   )
@@ -108,6 +108,17 @@ foreach(arg ${app_arguments})
   endif()
 
   if(is_resource_file)
+
+    # extract the flag:
+    string(
+        REGEX
+        REPLACE
+        "^\(.*\)\\$<GAUZE_RESOURCE_FILE:\(.*\)>$"
+        "\\1"
+        resource_flag
+        "${arg}"
+    )
+      
     message("Resource detected: '${resource_file}'")
     if(NOT IS_ABSOLUTE "${resource_file}")
       set(resource_file "@RESOURCE_DIR@/${resource_file}")
@@ -120,7 +131,7 @@ foreach(arg ${app_arguments})
     endif()
     get_filename_component(res_name "${resource_file}" NAME)
     set(res_path "${data_dir}/${res_name}")
-    set(arguments "${arguments} \"${res_path}\"")
+    set(arguments "${arguments} \"${resource_flag}${res_path}\"")
 
     message("Push resource to Android device:")
     message("  '${resource_file}'")
@@ -132,6 +143,17 @@ foreach(arg ${app_arguments})
       message(FATAL_ERROR "Command failed: ${cmd}")
     endif()
   elseif(is_resource_dir)
+
+    # extract the flag:
+    string(
+        REGEX
+        REPLACE
+        "^\(.*\)\\$<GAUZE_RESOURCE_DIR:\(.*\)>$"
+        "\\1"
+        resource_flag
+        "${arg}"
+    )
+    
     message("Directory with resources detected: '${resource_dir}'")
     if(NOT IS_ABSOLUTE "${resource_dir}")
       set(resource_dir "@RESOURCE_DIR@/${resource_dir}")
@@ -152,7 +174,7 @@ foreach(arg ${app_arguments})
     endif()
 
     set(res_path "${data_dir}/${res_name}")
-    set(arguments "${arguments} \"${res_path}\"")
+    set(arguments "${arguments} \"${resource_flag}${res_path}\"")    
 
     message("Remove destination directory: '${res_path}'")
     set(cmd ${adb_command} shell rm -rf \"${res_path}\")

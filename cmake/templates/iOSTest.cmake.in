@@ -127,6 +127,16 @@ foreach(arg ${app_arguments})
   endif()
 
   if(is_resource_file)
+    # extract the flag:
+    string(
+        REGEX
+        REPLACE
+        "^\(.*\)\\$<GAUZE_RESOURCE_FILE:\(.*\)>$"
+        "\\1"
+        resource_flag
+        "${arg}"
+    )
+    
     message("Resource detected: '${resource_file}'")
     if(NOT IS_ABSOLUTE "${resource_file}")
       set(resource_file "@RESOURCE_DIR@/${resource_file}")
@@ -142,7 +152,7 @@ foreach(arg ${app_arguments})
 
     # We need to keep GAUZE_RESOURCE_FILE for one more round of
     # expansion because we need runtime HOME variable (see 'gauze.cpp')
-    set(arguments "${arguments} \"\$<GAUZE_RESOURCE_FILE:${res_path}>\"")
+    set(arguments "${arguments} \"${resource_flag}\$<GAUZE_RESOURCE_FILE:${res_path}>\"")
 
     message("Push resource to iOS device (bundle-id '@BUNDLE_ID@'):")
     message("  '${resource_file}'")
@@ -150,6 +160,17 @@ foreach(arg ${app_arguments})
 
     run_cmd(${ios_deploy} --bundle_id "@BUNDLE_ID@" --upload "${resource_file}" --to "${res_path}")
   elseif(is_resource_dir)
+
+    # extract the flag:
+    string(
+        REGEX
+        REPLACE
+        "^\(.*\)\\$<GAUZE_RESOURCE_DIR:\(.*\)>$"
+        "\\1"
+        resource_flag
+        "${arg}"
+    )
+    
     message("Directory with resources detected: '${resource_dir}'")
     if(NOT IS_ABSOLUTE "${resource_dir}")
       set(resource_dir "@RESOURCE_DIR@/${resource_dir}")
@@ -175,7 +196,7 @@ foreach(arg ${app_arguments})
     # expansion because we need runtime HOME variable (see 'gauze.cpp')
     # NOTE: GAUZE_RESOURCE_FILE used instead of GAUZE_RESOURCE_DIR
     # to simplify logic (see gauze.cpp)
-    set(arguments "${arguments} \"\$<GAUZE_RESOURCE_FILE:${res_path}>\"")
+    set(arguments "${arguments} \"${resource_flag}\$<GAUZE_RESOURCE_FILE:${res_path}>\"")
 
     message("Push directory to iOS device (bundle-id '@BUNDLE_ID@'):")
     message("  '${resource_dir}'")
