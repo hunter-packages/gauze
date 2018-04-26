@@ -29,6 +29,12 @@ function(gauze_create_avd)
     return()
   endif()
 
+  set(abi "${CMAKE_ANDROID_ARCH_ABI}")
+  string(COMPARE EQUAL "${CMAKE_ANDROID_ARCH_ABI}" "armeabi" is_armeabi)
+  if(is_armeabi)
+    set(abi "armeabi-v7a")
+  endif()
+
   string(TIMESTAMP timestamp)
   message("[${timestamp}] Creating AVD with name '${GAUZE_DEVICE_NAME}'")
   set(
@@ -38,7 +44,7 @@ function(gauze_create_avd)
       avd
       "--name" "${GAUZE_DEVICE_NAME}"
       "--target" "android-${CMAKE_SYSTEM_VERSION}"
-      "--abi" "${CMAKE_ANDROID_ARCH_ABI}"
+      "--abi" "${abi}"
   )
   execute_process(
       COMMAND ${CMAKE_COMMAND} -E echo no
