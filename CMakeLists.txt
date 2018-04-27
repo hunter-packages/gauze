@@ -4,8 +4,8 @@ include("cmake/gauze_upload_config.cmake")
 
 include("cmake/HunterGate.cmake")
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.20.39.tar.gz"
-    SHA1 "b49c4b58e17c1473e822f8b21fcde92fee25791d"
+    URL "https://github.com/ruslo/hunter/archive/v0.20.59.tar.gz"
+    SHA1 "d24ba3f3f89cafa66bc8222a021ce050a00bc486"
 )
 
 project(gauze VERSION 0.2.1)
