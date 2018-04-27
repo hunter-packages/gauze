@@ -36,42 +36,94 @@ matrix:
     # Linux {
 
     - os: linux
-      env: CONFIG=Release TOOLCHAIN=clang-cxx17 SHARED=ON TEST="--test" BUILD_TEST=ON
+      env: >
+        TOOLCHAIN=clang-cxx17
+        CONFIG=Release
+        SHARED=ON
+        TEST="--test"
 
     - os: linux
-      env: CONFIG=Debug TOOLCHAIN=gcc-7-cxx17 SHARED=OFF TEST="--test" BUILD_TEST=ON
+      env: >
+        TOOLCHAIN=gcc-7-cxx17
+        CONFIG=Debug
+        SHARED=OFF
+        TEST="--test"
 
     - os: linux
-      env: CONFIG=Release TOOLCHAIN=android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14 SHARED=ON TEST="" BUILD_TEST=OFF
+      env: >
+        TOOLCHAIN=android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14
+        CONFIG=Release
+        SHARED=ON
+        TEST="--test"
+        USE_EMULATOR=ON
 
     - os: linux
-      env: CONFIG=Release TOOLCHAIN=android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14 SHARED=OFF TEST="" BUILD_TEST=OFF
+      env: >
+        TOOLCHAIN=android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14
+        CONFIG=Release
+        SHARED=OFF
+        TEST="--test"
+        USE_EMULATOR=ON
 
     - os: linux
-      env: CONFIG=Debug TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon SHARED=OFF TEST="--test" BUILD_TEST=ON
+      env: >
+        TOOLCHAIN=android-ndk-r16b-api-16-armeabi-v7a-clang-libcxx14
+        CONFIG=Debug
+        SHARED=OFF
+        TEST="--test"
+        USE_EMULATOR=ON
+
+    # It's not possible to run x86 emulator on Travis:
+    # * https://stackoverflow.com/a/35107707
+    # => TEST="" and USE_EMULATOR=OFF
+    - os: linux
+      env: >
+        TOOLCHAIN=android-ndk-r16b-api-16-x86-clang-libcxx14
+        CONFIG=Debug
+        SHARED=OFF
+        TEST=""
+        USE_EMULATOR=OFF
 
     - os: linux
-      env: CONFIG=Release TOOLCHAIN=generate-documentation-test
+      env: >
+        TOOLCHAIN=android-ndk-r15c-api-16-mips-clang-libcxx
+        CONFIG=Debug
+        SHARED=OFF
+        TEST="--test"
+        USE_EMULATOR=ON
+
+    - os: linux
+      env: >
+        TOOLCHAIN=generate-documentation-test
+        CONFIG=Release
 
     # }
 
     # OSX {
 
     - os: osx
-      osx_image: xcode9.2
-      env: CONFIG=Release TOOLCHAIN=osx-10-13-make-cxx14 SHARED=ON TEST="--test" BUILD_TEST=ON
+      osx_image: xcode9.3
+      env: >
+        TOOLCHAIN=osx-10-13-make-cxx14
+        CONFIG=Release
+        SHARED=ON
+        TEST="--test"
 
     - os: osx
-      osx_image: xcode9.2
-      env: CONFIG=Debug TOOLCHAIN=osx-10-13-cxx14 SHARED=OFF TEST="--test" BUILD_TEST=ON
+      osx_image: xcode9.3
+      env: >
+        TOOLCHAIN=osx-10-13-cxx14
+        CONFIG=Debug
+        SHARED=OFF
+        TEST="--test"
 
     - os: osx
-      osx_image: xcode9.2
-      env: CONFIG=Release TOOLCHAIN=ios-nocodesign-11-2-dep-9-3 SHARED=OFF TEST="" BUILD_TEST=ON
-
-    - os: osx
-      osx_image: xcode9.2
-      env: CONFIG=Release TOOLCHAIN=android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14 SHARED=ON TEST="" BUILD_TEST=OFF
+      osx_image: xcode9.3
+      env: >
+        TOOLCHAIN=ios-nocodesign-11-3-dep-9-3
+        CONFIG=Release
+        SHARED=OFF
+        TEST=""
 
     # }
 
@@ -84,6 +136,7 @@ install:
   - export HOMEBREW_NO_AUTO_UPDATE=1
 
   # Install Python 3
+  - if [[ "`uname`" == "Darwin" ]]; then travis_retry brew upgrade python; fi
   - if [[ "`uname`" == "Darwin" ]]; then travis_retry brew install python3; fi
 
   # Install Python package 'requests'
