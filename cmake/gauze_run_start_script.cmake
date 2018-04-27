@@ -23,6 +23,11 @@ function(gauze_run_start_script)
     set(GAUZE_ANDROID_EMULATOR_GPU "host")
   endif()
 
+  if("${GAUZE_ANDROID_EMULATOR_PARTITION_SIZE}" STREQUAL "")
+    # https://developer.android.com/studio/run/emulator-commandline
+    set(GAUZE_ANDROID_EMULATOR_PARTITION_SIZE 200)
+  endif()
+
   # Use:
   # * GAUZE_ANDROID_ADB
   # * GAUZE_ANDROID_EMULATOR
@@ -32,6 +37,7 @@ function(gauze_run_start_script)
   # * GAUZE_START_LOG
   # * ANDROID-SDK_ROOT
   # * GAUZE_ANDROID_EMULATOR_GPU
+  # * GAUZE_ANDROID_EMULATOR_PARTITION_SIZE
   configure_file(${GAUZE_START_EMULATOR_SCRIPT} "${start_script}" @ONLY)
 
   set(bash_path "/bin/bash")

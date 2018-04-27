@@ -16,5 +16,6 @@ export "ANDROID_SDK_ROOT=@ANDROID-SDK_ROOT@/android-sdk"
     -no-window \
     -port "@GAUZE_DEVICE_PORT@" \
     -gpu "@GAUZE_ANDROID_EMULATOR_GPU@" \
+    -partition-size "@GAUZE_ANDROID_EMULATOR_PARTITION_SIZE@" \
     1> "@GAUZE_START_LOG@" \
     2> "@GAUZE_START_ERR@" &

@@ -59,8 +59,8 @@ Emulator can be stopped by ``kill -9`` command:
   <username> 9160 ... /.../android-sdk/tools/emulator64-arm -avd gauze_android-19_armeabi-v7a -no-window -port 5678 -gpu host
   > kill -9 9160
 
-Emulator GPU
-============
+Other options
+=============
 
 You can set ``GAUZE_ANDROID_EMULATOR_GPU`` to control what GPU type will be
 using while creating Android emulator:
@@ -72,4 +72,9 @@ using while creating Android emulator:
   For Travis CI:
 
   * use ``host`` on macOS machines
-  * use ``none`` on Linux machines
+  * use ``off`` on Linux machines
+
+You can set ``GAUZE_ANDROID_EMULATOR_PARTITION_SIZE`` to specify the system
+data partition size in MBs.
+
+* https://developer.android.com/studio/run/emulator-acceleration#command-gpu
