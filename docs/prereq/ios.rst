@@ -13,7 +13,7 @@ Building from source:
   [ios-deploy]> xcodebuild
   [ios-deploy]> ls build/Release/ios-deploy
   build/Release/ios-deploy
-  [ios-deploy]> export PATH=`pwd`/build/Release/ios-deploy:$PATH
+  [ios-deploy]> export PATH=`pwd`/build/Release:$PATH
   [ios-deploy]> which ios-deploy
   /.../ios-deploy/build/Release/ios-deploy
 
