@@ -49,21 +49,23 @@ matrix:
         SHARED=OFF
         TEST="--test"
 
+    # Note: Do not use emulator - error "No space left on device"
     - os: linux
       env: >
         TOOLCHAIN=android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14
         CONFIG=Release
         SHARED=ON
-        TEST="--test"
-        USE_EMULATOR=ON
+        TEST=""
+        USE_EMULATOR=OFF
 
+    # Note: Do not use emulator - error "No space left on device"
     - os: linux
       env: >
         TOOLCHAIN=android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14
         CONFIG=Release
         SHARED=OFF
-        TEST="--test"
-        USE_EMULATOR=ON
+        TEST=""
+        USE_EMULATOR=OFF
 
     - os: linux
       env: >
