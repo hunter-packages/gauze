@@ -208,6 +208,11 @@ foreach(arg ${app_arguments})
   endif()
 endforeach()
 
+foreach(x @x_FORWARD_ENV@)
+  message("Forwarding user's variable '${x}' with value '$ENV{${x}}'")
+  set(arguments "${arguments} \"\$<GAUZE_ENVIRONMENT_VARIABLE:${x}=$ENV{${x}}>\"")
+endforeach()
+
 if(NOT "${arguments}" STREQUAL "")
   list(APPEND cmd "--args" "${arguments}")
 endif()

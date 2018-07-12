@@ -165,6 +165,7 @@ function(gauze_add_test)
     # * APP_ARGUMENTS
     # * RESOURCE_DIR
     # * BUNDLE_ID
+    # * x_FORWARD_ENV
     configure_file(
         "${GAUZE_ADD_TEST_SELF_DIR}/templates/iOSTest.cmake.in"
         "${script_path}"
