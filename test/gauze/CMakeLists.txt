@@ -8,6 +8,8 @@ else()
   add_subdirectory(directory)
 endif()
 
+add_subdirectory(forward_env)
+
 add_subdirectory(deplib) # before 'deps'
 add_subdirectory(deps)
 add_subdirectory(gtest)

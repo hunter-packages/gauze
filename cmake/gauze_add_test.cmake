@@ -10,10 +10,11 @@ set(GAUZE_ADD_TEST_SELF_DIR "${CMAKE_CURRENT_LIST_DIR}")
 function(gauze_add_test)
   set(optional "")
   set(one NAME)
-  set(multiple COMMAND)
+  set(multiple COMMAND FORWARD_ENV)
 
   # * x_NAME
   # * x_COMMAND
+  # * x_FORWARD_ENV
   cmake_parse_arguments(x "${optional}" "${one}" "${multiple}" "${ARGV}")
 
   string(COMPARE NOTEQUAL "${x_UNPARSED_ARGUMENTS}" "" has_unparsed)
@@ -85,6 +86,7 @@ function(gauze_add_test)
     # * TESTING_DIR
     # * RESOURCE_DIR
     # * GAUZE_ANDROID_USE_EMULATOR
+    # * x_FORWARD_ENV
     configure_file(
         "${GAUZE_ADD_TEST_SELF_DIR}/templates/AndroidTest.cmake.in"
         "${script_path}"

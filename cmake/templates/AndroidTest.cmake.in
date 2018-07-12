@@ -225,10 +225,17 @@ endif()
 message("Set LD_LIBRARY_PATH to '${libs_dir}'")
 message("Run command on Android device:")
 message("[@TESTING_DIR@]> \"${exe_path}\" ${arguments}")
+
+set(forward_variables "")
+foreach(x @x_FORWARD_ENV@)
+  message("Forwarding user's variable '${x}' with value '$ENV{${x}}'")
+  set(forward_variables "export ${x}=\"$ENV{${x}}\"; ${forward_variables}")
+endforeach()
+
 # Note: Add '2>&1' redirection because otherwise 'cerr' will mess up with 'echo $?'
 execute_process(
     COMMAND
-    ${adb_command} shell "cd \"@TESTING_DIR@\"; export LD_LIBRARY_PATH=\"${libs_dir}\"; \"${exe_path}\" ${arguments} 2>&1; echo $?"
+    ${adb_command} shell "cd \"@TESTING_DIR@\"; ${forward_variables} export LD_LIBRARY_PATH=\"${libs_dir}\"; \"${exe_path}\" ${arguments} 2>&1; echo $?"
     RESULT_VARIABLE result
     OUTPUT_VARIABLE output
     ERROR_VARIABLE output
