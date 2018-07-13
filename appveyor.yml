@@ -3,7 +3,7 @@
 environment:
   global:
     GITHUB_USER_PASSWORD:
-      secure: 6H7CIRtXeTbl+sAlcuTRAW3tun6JmQmj70kqV/VK178/NSc2cdkfXioxVqP47vht
+      secure: ttdF7kD8d+FDl/x6qDAiTDBh5a27ZZKQ28cXVdpzuzupFYXAUoDXT4zf8yiTfwrn
 
   matrix:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017

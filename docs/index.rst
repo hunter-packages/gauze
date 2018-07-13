@@ -32,3 +32,4 @@ can be used for managing resources.
   /examples/directory
   /examples/deps
   /examples/gtest
+  /examples/forward_env

@@ -61,7 +61,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Gauze'
-copyright = '2017, Ruslan Baratov, David Hirvonen'
+copyright = '2017-2018, Ruslan Baratov, David Hirvonen'
 author = 'Ruslan Baratov, David Hirvonen'
 
 # The version info for the project you're documenting, acts as replacement for

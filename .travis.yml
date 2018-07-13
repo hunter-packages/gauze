@@ -29,7 +29,7 @@ dist:
 
 env:
   global:
-    - secure: "eE1Hw92pwQupLqaCAlHt0Qxniv/e9AZSwPDGndD0dyHdPi7XCCqTULvlfie06ZiCXiSuWR+qXUj0mASpHFbz29cThNu5cMDC5YAgZ9xAgEXbZ1AHdyEIHF7ygUDgKk9+lm/7ju2XudESplbK1PuQGnNJAoI7SSNSeTqXa1LzHIlNKFjxFptjskhhi/UMR4UlM3mnTmILgUCLDD5rFVI5GGQqaAAAhWxbuLW1tX6v7iwZxuq/20r9nU9iN7notrclgmqmxKeHydBFgKrmQo+4yZsdpJQK7mGHG3Cvzegj9XjKfvQYAYHPXzwxuPGZT+JK/hZIS7PUH/ROqvsYVMpCim5ViLkRh6wz8tcUHSAh1yMvU5uo6HlT+rZExn5JXYEM69V1PenVxScCFHAjIukh0x7burnUOjbH3IhGjdeD2ppi7JqW8U6LR5S83c5DAD89xrHgIsKqOPvKl243i7vZ0B+LRHypBQbmbmcLG0J7sZ9NJrAeoGHut1E6Syx3br+3ysQm2pKcEIFaoMBBMZ3ZaYvaMrXFdI0JRpDffdkZtsoNTVGMBbj8W43qZs8cqFlyEQ0gAbRI/MbE2LB3fV7b7DBdt4GB5u9TL789XgvGurpsZ6wo5Moldd8ctVr4ZG8g19h6OFQZ6t1II+nyX5fqx0Yk4VR01dUsx/kFnwKvwMs="
+    - secure: "g1g9MV4I7wS2YfUeOPi5Vhdh+ZA194rwTwFZCxyV5TgCRY+5UTNfqza5eFBc03+alXmGc5YHmvhCMgjlaIktR/ucVg1dJeLvxgJ1y3CxWctU5rE4jruF6pSO2HfFyggN/Z8cwWHAZ2Zj7yBjoXi/snKJrlVr5Moh4mlXyb7nEm3yAeQqtIFMnnHvWzJ7byCb6Kh0RN9e4w4LkV3VS3t71RrTRKQnGg8CPTs3WjN+MZM8ofXLZsYKWk6dUaVmckkha5MV9YLmwWD7pglWh6n/Um85Bn/kcZhmqSdFCPMG82y+Jrqe7Rj2XcDvllB1d4SFxsLaIyI1Rjk5siH6PmAxNDfmEZ5HuTxLpr9u5AGRPDjXebB1b5lAOQzU866a9Dbq4HvZMAP08L8y0AUOSX0Fdw2nx0QOSi0LQ6qqQvGXAAlG/HEf2m8LBAWINXV+pwXgYcYl87o9YTh2UpuDal5r+TtQ/QvJMAkHgx6RBggMhuLrwYbZK2VGMxAOlUldFTA8DrSFkJIz9MKo0Y4MiA2C4pToMUSu3yr6nO4gMFIQb09cENvgnnYOSS5LpxEF9eHBE5xAn9UdNQDK0KQyt99Ht834eaWUNDNHofa440CovZ6Q3alkHqPd+732ZByggvo54+nZGNMa8ugVLjFE2QA0XaiF2Bgd9w+Djd57Q8gH3y4="
 
 matrix:
   include:
@@ -49,21 +49,23 @@ matrix:
         SHARED=OFF
         TEST="--test"
 
+    # Note: Do not use emulator - error "No space left on device"
     - os: linux
       env: >
         TOOLCHAIN=android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14
         CONFIG=Release
         SHARED=ON
-        TEST="--test"
-        USE_EMULATOR=ON
+        TEST=""
+        USE_EMULATOR=OFF
 
+    # Note: Do not use emulator - error "No space left on device"
     - os: linux
       env: >
         TOOLCHAIN=android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14
         CONFIG=Release
         SHARED=OFF
-        TEST="--test"
-        USE_EMULATOR=ON
+        TEST=""
+        USE_EMULATOR=OFF
 
     - os: linux
       env: >
@@ -151,7 +153,7 @@ install:
   - export PATH="${POLLY_ROOT}/bin:${PATH}"
 
   # Install dependencies (CMake, Android NDK)
-  - install-ci-dependencies.py
+  - install-ci-dependencies.py --prune-archives
 
   # Tune locations
   - export PATH="`pwd`/_ci/cmake/bin:${PATH}"
