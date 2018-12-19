@@ -58,7 +58,7 @@ install:
   - cmd: set VS150COMNTOOLS=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools
 
 build_script:
-  - cmd: python %POLLY_ROOT%\bin\polly.py --toolchain "%TOOLCHAIN%" --config "%CONFIG%" --verbose --test --install --fwd BUILD_SHARED_LIBS=%SHARED% HUNTER_BUILD_SHARED_LIBS=%SHARED%
+  - cmd: python %POLLY_ROOT%\bin\polly.py --toolchain "%TOOLCHAIN%" --config "%CONFIG%" --verbose --test --install --fwd BUILD_SHARED_LIBS=%SHARED% HUNTER_BUILD_SHARED_LIBS=%SHARED% HUNTER_SUPPRESS_LIST_OF_FILES=ON
 
 # http://www.appveyor.com/docs/branches#white-and-blacklisting
 # Exclude branch 'pkg.template'. Nothing to build there.

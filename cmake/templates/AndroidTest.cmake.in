@@ -37,6 +37,12 @@ else()
   list(APPEND adb_command "-d")
 endif()
 
+if("@GAUZE_ANDROID_PUSH_QUIET@")
+  set(push_quiet OUTPUT_QUIET)
+else()
+  set(push_quiet "")
+endif()
+
 message("Creating directory on Android device: '${exe_dir}'")
 set(cmd ${adb_command} shell mkdir -p "${exe_dir}")
 execute_process(COMMAND ${cmd} RESULT_VARIABLE result)
@@ -51,7 +57,7 @@ message("  '${APP_SOURCE}'")
 message("  -> '${exe_path}'")
 
 set(cmd ${adb_command} push "${APP_SOURCE}" "${exe_path}")
-execute_process(COMMAND ${cmd} RESULT_VARIABLE result)
+execute_process(COMMAND ${cmd} RESULT_VARIABLE result ${push_quiet})
 if(NOT result EQUAL 0)
   message(FATAL_ERROR "Command failed: ${cmd}")
 endif()
@@ -118,7 +124,7 @@ foreach(arg ${app_arguments})
         resource_flag
         "${arg}"
     )
-      
+
     message("Resource detected: '${resource_file}'")
     if(NOT IS_ABSOLUTE "${resource_file}")
       set(resource_file "@RESOURCE_DIR@/${resource_file}")
@@ -138,7 +144,7 @@ foreach(arg ${app_arguments})
     message("  -> '${res_path}'")
 
     set(cmd ${adb_command} push "${resource_file}" "${res_path}")
-    execute_process(COMMAND ${cmd} RESULT_VARIABLE result)
+    execute_process(COMMAND ${cmd} RESULT_VARIABLE result ${push_quiet})
     if(NOT result EQUAL 0)
       message(FATAL_ERROR "Command failed: ${cmd}")
     endif()
@@ -153,7 +159,7 @@ foreach(arg ${app_arguments})
         resource_flag
         "${arg}"
     )
-    
+
     message("Directory with resources detected: '${resource_dir}'")
     if(NOT IS_ABSOLUTE "${resource_dir}")
       set(resource_dir "@RESOURCE_DIR@/${resource_dir}")
@@ -174,7 +180,7 @@ foreach(arg ${app_arguments})
     endif()
 
     set(res_path "${data_dir}/${res_name}")
-    set(arguments "${arguments} \"${resource_flag}${res_path}\"")    
+    set(arguments "${arguments} \"${resource_flag}${res_path}\"")
 
     message("Remove destination directory: '${res_path}'")
     set(cmd ${adb_command} shell rm -rf \"${res_path}\")
@@ -188,7 +194,7 @@ foreach(arg ${app_arguments})
     message("  -> '${res_path}'")
 
     set(cmd ${adb_command} push "${resource_dir}" "${res_path}")
-    execute_process(COMMAND ${cmd} RESULT_VARIABLE result)
+    execute_process(COMMAND ${cmd} RESULT_VARIABLE result ${push_quiet})
     if(NOT result EQUAL 0)
       message(FATAL_ERROR "Command failed: ${cmd}")
     endif()
@@ -215,7 +221,7 @@ if(NOT "${LINKED_LIBS}" STREQUAL "")
     message("  -> '${lib_path}'")
 
     set(cmd ${adb_command} push "${x}" "${lib_path}")
-    execute_process(COMMAND ${cmd} RESULT_VARIABLE result)
+    execute_process(COMMAND ${cmd} RESULT_VARIABLE result ${push_quiet})
     if(NOT result EQUAL 0)
       message(FATAL_ERROR "Command failed: ${cmd}")
     endif()

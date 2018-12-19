@@ -75,6 +75,8 @@ function(gauze_add_test)
     )
     set(TESTING_DIR "${GAUZE_ANDROID_DEVICE_TESTING_ROOT}/${PROJECT_NAME}/${toolchain_suffix}")
 
+    option(GAUZE_ANDROID_PUSH_QUIET "adb push quietly" OFF)
+
     if(GAUZE_ANDROID_USE_EMULATOR)
       gauze_start_android_emulator()
     endif()
@@ -85,6 +87,7 @@ function(gauze_add_test)
     # * APP_ARGUMENTS
     # * TESTING_DIR
     # * RESOURCE_DIR
+    # * GAUZE_ANDROID_PUSH_QUIET
     # * GAUZE_ANDROID_USE_EMULATOR
     # * x_FORWARD_ENV
     configure_file(
