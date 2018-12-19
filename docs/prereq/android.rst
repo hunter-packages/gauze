@@ -78,3 +78,6 @@ You can set ``GAUZE_ANDROID_EMULATOR_PARTITION_SIZE`` to specify the system
 data partition size in MBs.
 
 * https://developer.android.com/studio/run/emulator-acceleration#command-gpu
+
+Set ``GAUZE_ANDROID_PUSH_QUIET`` to ``ON`` to suppress output from ``adb push``
+commands.
