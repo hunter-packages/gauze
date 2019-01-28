@@ -26,13 +26,29 @@ function(gauze_check_emulator_running device_running_result)
 
   string(REPLACE "\n" ";" output "${output}")
   string(REPLACE "\t" " " output "${output}")
+
+  if(GAUZE_ANDROID_START_EMULATOR)
+    # We expect that emulator created by Gauze, with name 'emulator-*'
+    foreach(x ${output})
+      string(REGEX MATCH "^emulator-${GAUZE_DEVICE_PORT}[ ]+device$" match "${x}")
+      if(NOT "${match}" STREQUAL "")
+        set(${device_running_result} TRUE PARENT_SCOPE)
+        return()
+      endif()
+    endforeach()
+
+    set(${device_running_result} FALSE PARENT_SCOPE)
+    return()
+  endif()
+
+  # Emulator should be started by user
   foreach(x ${output})
-    string(REGEX MATCH "^emulator-${GAUZE_DEVICE_PORT}[ ]+device$" match "${x}")
+    string(REGEX MATCH "[ ]+device$" match "${x}")
     if(NOT "${match}" STREQUAL "")
       set(${device_running_result} TRUE PARENT_SCOPE)
       return()
     endif()
   endforeach()
 
-  set(${device_running_result} FALSE PARENT_SCOPE)
+  message(FATAL_ERROR "Device not found, command to verify: ${cmd}")
 endfunction()
