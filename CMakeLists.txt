@@ -8,7 +8,7 @@ HunterGate(
     SHA1 "d24ba3f3f89cafa66bc8222a021ce050a00bc486"
 )
 
-project(gauze VERSION 0.6.0)
+project(gauze VERSION 0.7.0)
 
 option(GAUZE_BUILD_TESTS "Build tests" ON)
 set(GAUZE_ANDROID_EMULATOR_GPU "host" CACHE STRING "GPU type for Android emulator")
