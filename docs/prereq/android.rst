@@ -62,6 +62,9 @@ Emulator can be stopped by ``kill -9`` command:
 Other options
 =============
 
+GAUZE_ANDROID_EMULATOR_GPU
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 You can set ``GAUZE_ANDROID_EMULATOR_GPU`` to control what GPU type will be
 using while creating Android emulator:
 
@@ -74,10 +77,22 @@ using while creating Android emulator:
   * use ``host`` on macOS machines
   * use ``off`` on Linux machines
 
+GAUZE_ANDROID_EMULATOR_PARTITION_SIZE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 You can set ``GAUZE_ANDROID_EMULATOR_PARTITION_SIZE`` to specify the system
 data partition size in MBs.
 
-* https://developer.android.com/studio/run/emulator-acceleration#command-gpu
+GAUZE_ANDROID_PUSH_QUIET
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Set ``GAUZE_ANDROID_PUSH_QUIET`` to ``ON`` to suppress output from ``adb push``
 commands.
+
+GAUZE_ANDROID_START_EMULATOR
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Gauze will create suitable Android emulator image and start emulator
+automatically. In case if you want to reuse existing emulator instead, e.g. one
+created manually in Android Studio, you can set ``GAUZE_ANDROID_START_EMULATOR``
+option to ``OFF``. ``GAUZE_ANDROID_START_EMULATOR`` is set to ``ON`` by default.
