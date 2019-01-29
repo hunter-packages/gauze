@@ -96,3 +96,18 @@ Gauze will create suitable Android emulator image and start emulator
 automatically. In case if you want to reuse existing emulator instead, e.g. one
 created manually in Android Studio, you can set ``GAUZE_ANDROID_START_EMULATOR``
 option to ``OFF``. ``GAUZE_ANDROID_START_EMULATOR`` is set to ``ON`` by default.
+
++------------------------------+------------------+------------------+------------------+
+|                              | Real device      | Emulator         | Emulator         |
+|                              |                  | (automatically)  | (external)       |
++==============================+==================+==================+==================+
+| adb shell [1]_               | ``adb -d shell`` | ``adb -e shell`` | ``adb -e shell`` |
++------------------------------+------------------+------------------+------------------+
+| GAUZE_ANDROID_USE_EMULATOR   | ``OFF`` [2]_     | ``ON``           | ``ON``           |
++------------------------------+------------------+------------------+------------------+
+| GAUZE_ANDROID_START_EMULATOR | ``-``            | ``ON`` [3]_      | ``OFF``          |
++------------------------------+------------------+------------------+------------------+
+
+.. [1] https://developer.android.com/studio/command-line/adb#issuingcommands
+.. [2] By default real device used
+.. [3] By default Gauze will start emulator automatically
