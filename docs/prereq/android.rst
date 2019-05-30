@@ -63,6 +63,19 @@ Emulator can be stopped by ``kill -9`` command:
   <username> 9160 ... /.../android-sdk/tools/emulator64-arm -avd gauze_android-19_armeabi-v7a -no-window -port 5678 -gpu host
   > kill -9 9160
 
+.. warning::
+
+  Pushed resource file and executable are not cleaned up automatically. You
+  have to remove files explicitly from ``GAUZE_ANDROID_DEVICE_TESTING_ROOT``
+  directory (defaults to ``/data/local/tmp``):
+
+  .. code-block:: none
+
+    > adb shell
+    > cd /data/local/tmp
+    > ls -la
+    > rm -rf somefile somedir
+
 Other options
 =============
 
@@ -92,6 +105,11 @@ GAUZE_ANDROID_PUSH_QUIET
 
 Set ``GAUZE_ANDROID_PUSH_QUIET`` to ``ON`` to suppress output from ``adb push``
 commands.
+
+GAUZE_ANDROID_PUSH_RESOURCES_ONLY
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Do not run tests but only push resources.
 
 GAUZE_ANDROID_START_EMULATOR
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

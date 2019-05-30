@@ -13,6 +13,7 @@ project(gauze VERSION 0.7.0)
 option(GAUZE_BUILD_TESTS "Build tests" ON)
 set(GAUZE_ANDROID_EMULATOR_GPU "host" CACHE STRING "GPU type for Android emulator")
 option(GAUZE_ANDROID_PUSH_QUIET "adb push quietly" ON)
+option(GAUZE_ANDROID_PUSH_RESOURCES_ONLY "Only push resources" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 include(gauze_add_test)

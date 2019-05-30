@@ -89,6 +89,7 @@ function(gauze_add_test)
     # * TESTING_DIR
     # * RESOURCE_DIR
     # * GAUZE_ANDROID_PUSH_QUIET
+    # * GAUZE_ANDROID_PUSH_RESOURCES_ONLY
     # * GAUZE_ANDROID_USE_EMULATOR
     # * x_FORWARD_ENV
     configure_file(
